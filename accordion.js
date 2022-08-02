@@ -2,6 +2,7 @@ export class Accordion {
   constructor(config) {
     this._defaultConfig = {
       alwaysOpen: true,
+      duration: 300,
     };
     this._config = Object.assign(this._defaultConfig, config);
   }
@@ -9,6 +10,7 @@ export class Accordion {
   accordionInit() {
     this._getElements();
     this._setEventListeners();
+    this._setAnimationDuration();
   }
 
   _getElements() {
@@ -16,12 +18,19 @@ export class Accordion {
       this._config.accordionBlockSelector
     );
     this._btnSelector = this._config.btnSelector;
+    this._bodySelector = this._config.bodySelector;
     this._itemShowSelector = this._config.itemShowSelector;
     this._itemShowClass = this._itemShowSelector.slice(1);
   }
 
   _setEventListeners() {
     this._setClickListener();
+  }
+
+  _setAnimationDuration() {
+    this._accordion.querySelectorAll(this._bodySelector).forEach(element => {
+      element.style.transition = `max-height ${this._config.duration}ms ease-out`;
+    });
   }
 
   _setClickListener() {
@@ -34,7 +43,7 @@ export class Accordion {
 
   _accordionHandler() {
     this._config.alwaysOpen === false ? this._checkOpenedItem() : null;
-    this._toggleState(this._targetBtn);
+    this._toggleState(this._targetBtn.parentElement);
   }
 
   _checkOpenedItem() {
@@ -42,12 +51,18 @@ export class Accordion {
     if (openendItem) {
       const openendItemBtn = openendItem.querySelector(this._btnSelector);
       openendItemBtn !== this._target
-        ? this._toggleState(openendItemBtn)
+        ? this._toggleState(openendItemBtn.parentElement)
         : null;
     }
   }
 
-  _toggleState(item) {
-    item.parentElement.classList.toggle(this._itemShowClass);
+  _toggleState(accordion) {
+    accordion.classList.toggle(this._itemShowClass);
+    const accordionBody = accordion.querySelector(this._bodySelector);
+			if (accordionBody.style.maxHeight) {
+				accordionBody.style.maxHeight = null;
+			} else {
+				accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
+			}
   }
 }
