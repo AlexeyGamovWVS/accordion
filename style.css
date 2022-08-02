@@ -1,0 +1,78 @@
+* {
+	box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 100px 20px;
+  margin: auto;
+}
+
+.h2 {
+  font-size: 48px;
+}
+
+.accordion {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+	padding: 0;
+	margin: 0;
+}
+.accordion__item {
+  border-top: 1px solid #c4c4c4;
+}
+
+.accordion__item:last-of-type {
+	border-bottom: 1px solid #c4c4c4;
+}
+.accordion__btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+	opacity: 1;
+	transition: opacity .3s ease;
+}
+.accordion__btn:hover {
+	opacity: .6;
+}
+
+.accordion__btn::after {
+		content: "";
+		display: block;
+		margin-left: 8px;
+		height: 24px;
+		background-image: url(https://img.icons8.com/ios-filled/50/000000/circled-chevron-up.png);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		aspect-ratio: 1/1;
+		transition: transform .3s ease;
+		transform: rotate(-180deg);
+}
+
+.accordion__item_show .accordion__btn::after {
+  transform: rotate(0deg);
+}
+
+.accordion__item:not(.accordion__item_show) .accordion__body {
+  display: none;
+}
+
+.accordion__header {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+.accordion__body {
+	padding-bottom: 32px;
+}
+.accordion__answer {
+	margin: 0;
+}
