@@ -28,7 +28,7 @@ export class Accordion {
   }
 
   _setAnimationDuration() {
-    this._accordion.querySelectorAll(this._bodySelector).forEach(element => {
+    this._accordion.querySelectorAll(this._bodySelector).forEach((element) => {
       element.style.transition = `max-height ${this._config.duration}ms ease-out`;
     });
   }
@@ -59,10 +59,10 @@ export class Accordion {
   _toggleState(accordion) {
     accordion.classList.toggle(this._itemShowClass);
     const accordionBody = accordion.querySelector(this._bodySelector);
-			if (accordionBody.style.maxHeight) {
-				accordionBody.style.maxHeight = null;
-			} else {
-				accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
-			}
+    if (accordionBody.style.maxHeight) {
+      accordionBody.style.maxHeight = null;
+    } else {
+      accordionBody.style.maxHeight = accordionBody.scrollHeight + "px";
+    }
   }
 }
