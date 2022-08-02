@@ -14,9 +14,9 @@ ____
 __Важный аспект: (bold)__, если `.accordion__item` не имеет класса `accordion__item_show`, элемент `.accordion__body` не показывается, это реализовано на CSS следующим образом:
 
 ```css
-		.accordion__item:not(.accordion__item_show) .accordion__body {
-			display: none;
-		}
+.accordion__item:not(.accordion__item_show) .accordion__body {
+  display: none;
+}
 ```
 
 Остальные стили отвечают только за оформление аккордеона и к функционалу прямого отношения не имеют.
